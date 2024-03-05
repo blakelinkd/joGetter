@@ -22,6 +22,8 @@ import pywinauto
 import chromedriver_autoinstaller
 from setup import setup
 from dotenv import load_dotenv
+from math import sqrt
+
 def extract_uuid(url):
     pattern = re.compile(r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}', re.IGNORECASE)
     match = pattern.search(url)
@@ -29,6 +31,57 @@ def extract_uuid(url):
         return match.group(0)
     else:
         return None
+
+import sqlite3
+from math import sqrt
+
+def check_company_in_outliers(company_name):
+    # Connect to the SQLite database
+    conn = sqlite3.connect('job_data.db')
+    cursor = conn.cursor()
+    
+    # Drop the table if it exists and recreate it with the latest data
+    cursor.executescript("""
+    DROP TABLE IF EXISTS RecentJobPostOutliers;
+    CREATE TABLE RecentJobPostOutliers AS
+    WITH JobCounts AS (
+        SELECT companyName, COUNT(*) AS jobCount
+        FROM jobs
+        WHERE companyName <> ''
+        GROUP BY companyName
+    ),
+    Stats AS (
+        SELECT AVG(jobCount) AS average, 
+               (SUM((jobCount - (SELECT AVG(jobCount) FROM JobCounts)) * (jobCount - (SELECT AVG(jobCount) FROM JobCounts))) / COUNT(*)) AS variance
+        FROM JobCounts
+    )
+    SELECT jc.companyName, jc.jobCount,
+           (jc.jobCount - s.average) / (sqrt(s.variance)) AS z_score
+    FROM JobCounts jc, Stats s
+    WHERE jc.jobCount > s.average + (2 * (sqrt(s.variance)))
+    ORDER BY z_score DESC;
+    """)
+    
+    # Prepare the query to check if the company exists in the newly created table
+    query = """
+    SELECT EXISTS(
+        SELECT 1 FROM RecentJobPostOutliers WHERE companyName = ?
+    );
+    """
+    
+    # Execute the query with the company name as a parameter to prevent SQL injection
+    cursor.execute(query, (company_name,))
+    
+    # Fetch the result
+    exists = cursor.fetchone()[0]
+    
+    # Close the connection
+    conn.close()
+    
+    # Return True if the company exists, False otherwise
+    return exists == 1
+
+
 
 def configure_chrome_driver():
     chromedriver_autoinstaller.install()
@@ -95,7 +148,7 @@ class DiceBot:
 
 
         query_string = urllib.parse.quote(search_query)
-        self.base_url = f'https://www.dice.com/jobs?q={query_string}&location=Remote,%20OR,%20Oklahoma&latitude=43.00594549999999&longitude=-123.8925908&countryCode=US&locationPrecision=City&radius=30&filters.postedDate=SEVEN&radiusUnit=mi&page=1&pageSize=500&filters.easyApply=true&language=en&eid=4677'
+        self.base_url = f'https://www.dice.com/jobs?q={query_string}&location=Remote,%20OR,%20Oklahoma&latitude=43.00594549999999&longitude=-123.8925908&countryCode=US&locationPrecision=City&radius=30&radiusUnit=mi&page=1&pageSize=500&filters.easyApply=true&language=en&eid=4677'
         print('getting base_url')
         self.driver.get(self.base_url)
         print('done')
@@ -194,6 +247,7 @@ class DiceBot:
                 if not company_elm.text:
                     print("No matching job title <span> found within <a> elements.")
                     continue
+
                 job_info["company_name"] = company_elm.text
                 print(f"\033[33m{company_elm.text}\033[0m")
             except TimeoutException:
@@ -239,7 +293,7 @@ class DiceBot:
 
                 # for link in self.links:
                 cursor.execute("""
-                 SELECT id, link, generateLink, postTitle FROM jobs WHERE link LIKE '%dice.com%'
+                 SELECT id, link, generateLink, postTitle, companyName FROM jobs WHERE link LIKE '%dice.com%'
                 AND hasApplied = '0'
                 AND thirdParty = '1'
                 AND easyApply = '1'
@@ -255,6 +309,10 @@ class DiceBot:
                     link = row[1]
                     generateLink = row[2]
                     postTitle = row[3]
+                    companyName = row[4]
+                    if check_company_in_outliers(companyName):
+                        print(f"Company {companyName} is in the outliers. Skipping...")
+                        continue
                     self.driver.get(link)
                     self.driver.implicitly_wait(4)
                     try:
