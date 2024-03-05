@@ -53,8 +53,9 @@ class DiceBot:
         self.pages = 0
         self.max_pages = 1
     def run(self, search_query="python"):
-        username = os.getenv('USERNAME')
-        password = os.getenv('PASSWORD')
+        load_dotenv()
+        username = os.getenv('DICE_EMAIL_ADDRESS')
+        password = os.getenv('DICE_PASSWORD')
         self.driver.get("https://www.dice.com/dashboard/login")
         self.driver.implicitly_wait(10)
         time.sleep(3)
@@ -94,7 +95,7 @@ class DiceBot:
 
 
         query_string = urllib.parse.quote(search_query)
-        self.base_url = f'https://www.dice.com/jobs?q={query_string}&location=Remote,%20OR,%20Oklahoma&latitude=43.00594549999999&longitude=-123.8925908&countryCode=US&locationPrecision=City&radius=30&filters.postedDate=THREE&radiusUnit=mi&page=1&pageSize=500&filters.easyApply=true&language=en&eid=4677'
+        self.base_url = f'https://www.dice.com/jobs?q={query_string}&location=Remote,%20OR,%20Oklahoma&latitude=43.00594549999999&longitude=-123.8925908&countryCode=US&locationPrecision=City&radius=30&filters.postedDate=ONE&radiusUnit=mi&page=1&pageSize=500&filters.easyApply=true&language=en&eid=4677'
         print('getting base_url')
         self.driver.get(self.base_url)
         print('done')
@@ -481,8 +482,9 @@ class DiceBot:
 
 
 def main():
+    search_query=input("\033[91mSearch query: \033[0m")
     bot = DiceBot()
-    bot.run(search_query="developer")
+    bot.run(search_query)
     
 
 

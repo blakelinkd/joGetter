@@ -19,6 +19,9 @@ Before you begin, ensure you have Python installed on your system. This project 
     ```bash
     git clone https://github.com/blakelinkd/joGetter.git
     cd joGetter
+    pip install venv
+    python -m venv .venv
+    .\.venv\Scripts\activate
     pip install -r requirements.txt
     ```
 2. Configuration
@@ -29,8 +32,12 @@ PASSWORD=your_dice_password
 ```
 
 3. Usage
-run run.bat to activate the virtual environment and start the program
+To get started you can run this command in your terminal, or double click the icon of `run.bat`
+```bash
+./run.bat
+```
 
 
 ## Notes
-This only works in windows because of the pyautogui code
+- This only works in windows because of the pyautogui code
+- When you run the program, it's going to take control of the browser and you'll have to leave it be while it's running or you'll mess things up.
