@@ -1,4 +1,3 @@
-# & 'C:\Program Files\Google\Chrome\Application\chrome.exe' --remote-debugging-port=9222
 import datetime
 import random
 import re
@@ -18,18 +17,12 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support import expected_conditions as EC
 import os
-# from mistral_api_key import MISTRAL_API_KEY
-# from mistralai.client import MistralClient
-# from mistralai.models.chat_completion import ChatMessage
 from selenium.webdriver.common.alert import Alert
 import sqlite3
-import winsound
-# from transformers import AutoModelForCausalLM, AutoTokenizer
 import cv_locator
 import pywinauto
 import chromedriver_autoinstaller
-# api_key = MISTRAL_API_KEY
-# client = MistralClient(api_key=api_key)
+import .secrets as secrets
 
 def extract_uuid(url):
     # This pattern matches a UUID format
@@ -64,8 +57,8 @@ class IndeedBot:
         self.max_pages = 1
     def run(self, search_query="python"):
 
-        username = "blakelinkd@gmail.com"
-        password = "blink1984!"
+        username = secrets.USERNAME
+        password = secrets.PASSWORD
         self.driver.get("https://www.dice.com/dashboard/login")
         self.driver.implicitly_wait(10)  # Adjust the time according to your page's load time
 
