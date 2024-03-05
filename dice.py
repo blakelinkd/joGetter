@@ -41,7 +41,7 @@ class DiceBot:
     def __init__(self):
         print('got driver.')
         self.links = set()
-        self.resume_path = '../Blake_Link_Resume.pdf'
+        self.resume_path = os.getenv('RESUME_PATH')
         self.high_compat = 0
         self.low_compat = 0
         self.medium_compat = 0
