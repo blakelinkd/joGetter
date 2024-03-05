@@ -22,7 +22,8 @@ import sqlite3
 import cv_locator
 import pywinauto
 import chromedriver_autoinstaller
-import .secrets as secrets
+from . import secrets
+from setup import setup
 
 def extract_uuid(url):
     # This pattern matches a UUID format
@@ -517,6 +518,7 @@ def main():
 
 
 if __name__ == "__main__":
+    setup()
     main()
 
 
