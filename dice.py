@@ -22,7 +22,7 @@ import sqlite3
 import cv_locator
 import pywinauto
 import chromedriver_autoinstaller
-from . import secrets
+from . import app_secrets
 from setup import setup
 
 def extract_uuid(url):
@@ -58,8 +58,8 @@ class IndeedBot:
         self.max_pages = 1
     def run(self, search_query="python"):
 
-        username = secrets.USERNAME
-        password = secrets.PASSWORD
+        username = app_secrets.USERNAME
+        password = app_secrets.PASSWORD
         self.driver.get("https://www.dice.com/dashboard/login")
         self.driver.implicitly_wait(10)  # Adjust the time according to your page's load time
 
