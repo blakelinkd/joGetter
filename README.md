@@ -29,6 +29,7 @@ Before you begin, ensure you have Python installed on your system. This project 
 ```bash
 USERNAME=your_dice_username
 PASSWORD=your_dice_password
+RESUME_PATH="../path/to/resume.pdf"
 ```
 
 3. Usage
