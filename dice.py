@@ -33,7 +33,7 @@ def extract_uuid(url):
 import sqlite3
 from math import sqrt
 
-def check_company_in_outliers(company_name):
+def create_outliers_table():
     # Connect to the SQLite database
     conn = sqlite3.connect('job_data.db')
     cursor = conn.cursor()
@@ -58,7 +58,11 @@ def check_company_in_outliers(company_name):
     WHERE jc.jobCount > s.average + (2 * (sqrt(s.variance)))
     ORDER BY z_score DESC;
     """)
-    
+
+def check_company_in_outliers(company_name):
+    conn = sqlite3.connect('job_data.db')
+    cursor = conn.cursor()
+
     # Prepare the query to check if the company exists in the newly created table
     query = """
     SELECT EXISTS(
@@ -156,6 +160,7 @@ class DiceBot:
                 break
         self.process_links()
         os.system('python clean_and_rank.py')
+        create_outliers_table()
         self.apply_links()
         self.driver.quit()
 

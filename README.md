@@ -1,9 +1,9 @@
-# DiceBot: Automated Job Application Bot
+# joGetter: Automated Job Application Bot
 
-DiceBot is an automated tool designed to streamline the job application process on Dice.com. By leveraging this bot, users can automatically apply to job postings that match specified criteria, such as job title or technology stack, significantly reducing the time and effort required in job searching.
+joGetter is an automated tool designed to streamline the job application process on Dice.com. By leveraging this bot, users can automatically apply to job postings that match specified criteria, such as job title or technology stack, significantly reducing the time and effort required in job searching.
 
 ## Features
-
+- **NEW!** JoGetter will keep track of companies that are mass posting jobs and will avoid applying to those.
 - Automated login to Dice.com
 - Customizable job search queries
 - Automatic extraction of job links
