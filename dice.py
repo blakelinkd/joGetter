@@ -2,15 +2,14 @@ import datetime
 import random
 import re
 import time
+import urllib
 from urllib.parse import quote_plus
-import requests
 from selenium.common.exceptions import TimeoutException
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-import urllib
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support import expected_conditions as EC
@@ -22,7 +21,6 @@ import pywinauto
 import chromedriver_autoinstaller
 from setup import setup
 from dotenv import load_dotenv
-from math import sqrt
 
 def extract_uuid(url):
     pattern = re.compile(r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}', re.IGNORECASE)
@@ -39,7 +37,6 @@ def check_company_in_outliers(company_name):
     # Connect to the SQLite database
     conn = sqlite3.connect('job_data.db')
     cursor = conn.cursor()
-    
     # Drop the table if it exists and recreate it with the latest data
     cursor.executescript("""
     DROP TABLE IF EXISTS RecentJobPostOutliers;
@@ -425,8 +422,6 @@ class DiceBot:
             conn = sqlite3.connect('job_data.db')
             cursor = conn.cursor()
             job_count = 0
-            easy_app_count = 0
-            # print job_count out of self.total_jobs_count
             print(f"\033[93mProcessing {job_count} out of {self.total_jobs_count} jobs...\033[0m")
 
             # for link in self.links:
