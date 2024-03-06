@@ -297,7 +297,6 @@ class DiceBot:
                 cursor.execute("""
                  SELECT id, link, generateLink, postTitle, companyName FROM jobs WHERE link LIKE '%dice.com%'
                 AND hasApplied = '0'
-                AND thirdParty = '1'
                 AND easyApply = '1'
                 ORDER BY id DESC;
                 """)
