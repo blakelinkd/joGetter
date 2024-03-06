@@ -33,9 +33,9 @@ RESUME_PATH="../path/to/resume.pdf"
 ```
 
 3. Usage
-To get started you can run this command in your terminal, or double click the icon of `run.bat`
+To start, after you have configured the script run this command
 ```bash
-./run.bat
+python dice.py
 ```
 
 
