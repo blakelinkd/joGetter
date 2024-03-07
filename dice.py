@@ -30,8 +30,6 @@ def extract_uuid(url):
     else:
         return None
 
-import sqlite3
-from math import sqrt
 
 def create_outliers_table():
     # Connect to the SQLite database
@@ -328,7 +326,7 @@ class DiceBot:
                         self.driver.implicitly_wait(4)
                         time.sleep(2)
                     print(f"Processing link: {postTitle}")
-                    easy_apply = cv_locator.find_and_click_image("easy_apply.png", timeout=3)
+                    easy_apply = cv_locator.find_and_click_image("images/easy_apply.png", timeout=3)
                     flow['easy_apply'] = easy_apply
                     time.sleep(2)
                     if not easy_apply:
@@ -343,11 +341,11 @@ class DiceBot:
 
                     
                     if flow['easy_apply']:
-                        is_replace_button_located = cv_locator.find_and_click_image('replace_button.png', timeout=3)
+                        is_replace_button_located = cv_locator.find_and_click_image('images/replace_button.png', timeout=3)
                         flow['replace_button'] = is_replace_button_located
 
                     if flow['replace_button']:
-                        is_drop_target_located = cv_locator.find_and_click_image('drop_target.png', timeout=3)
+                        is_drop_target_located = cv_locator.find_and_click_image('images/drop_target.png', timeout=3)
                         flow['drop_target'] = is_drop_target_located
                         if flow['drop_target']:
                             time.sleep(2)
@@ -385,7 +383,7 @@ class DiceBot:
                     time.sleep(2)
                     
                     if flow['drop_target']:
-                        is_resume_upload_button_located = cv_locator.find_and_click_image('resume_upload_button.png', timeout=3)
+                        is_resume_upload_button_located = cv_locator.find_and_click_image('images/resume_upload_button.png', timeout=3)
                         flow['resume_upload_button'] = is_resume_upload_button_located
                         if flow['resume_upload_button']:
                             time.sleep(2)
@@ -394,7 +392,7 @@ class DiceBot:
 
                     # find and click next_button.png
                     if flow['resume_upload_button']:
-                        is_next_button_located = cv_locator.find_and_click_image('next_button.png', timeout=3)
+                        is_next_button_located = cv_locator.find_and_click_image('images/next_button.png', timeout=3)
                         flow['next_button'] = is_next_button_located
 
                     # Get the new URL
@@ -409,7 +407,7 @@ class DiceBot:
                     time.sleep(2)
 
                     if flow['next_button']:
-                        is_apply_button_located = cv_locator.find_and_click_image('apply_button.png', timeout=3)
+                        is_apply_button_located = cv_locator.find_and_click_image('images/apply_button.png', timeout=3)
                         if is_apply_button_located:
                             print('Clicked apply_button.png')
                             cursor.execute('''

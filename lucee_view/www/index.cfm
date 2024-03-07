@@ -13,7 +13,6 @@ LIMIT 100;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Postings</title>
-    <!-- Add Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
@@ -29,7 +28,6 @@ LIMIT 100;
                 <th scope="col" data-column="3">Salary</th>
                 <th scope="col" data-column="4">Job Board</th>
                 <th scope="col" data-column="5">hasApplied</th>
-                <!-- Add more table headers as needed -->
             </tr>
         </thead>
         <tbody>
@@ -60,7 +58,6 @@ LIMIT 100;
 
                 </td>
                     
-                    <!-- Add more table cells as needed -->
                 </tr>
             </cfoutput>
         </tbody>
@@ -74,7 +71,6 @@ LIMIT 100;
     var jobId = button.getAttribute('data-id');
     var hasApplied = button.getAttribute('data-applied');
 
-    // Open link in a new tab
     var link = button.parentElement.previousElementSibling.firstElementChild.href;
     window.open(link, '_blank');
 
@@ -104,10 +100,7 @@ LIMIT 100;
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-        // Get the table element
         var table = document.querySelector('.table');
-
-        // Get the table headers
         var headers = table.querySelectorAll('th');
 
         // Add click event listeners to the table headers
