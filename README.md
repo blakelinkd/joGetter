@@ -3,6 +3,7 @@
 joGetter is an automated tool designed to streamline the job application process on Dice.com. By leveraging this bot, users can automatically apply to job postings that match specified criteria, such as job title or technology stack, significantly reducing the time and effort required in job searching.
 
 ## Features
+- **NEW!** I've built an interface with ColdFusion that allows you to view and sort jobs that have been scraped.
 - **NEW!** JoGetter will keep track of companies that are mass posting jobs and will avoid applying to those.
 - Automated login to Dice.com
 - Customizable job search queries
@@ -37,6 +38,14 @@ To start, after you have configured the script run this command
 ```bash
 python dice.py
 ```
+4. ColdFusion UI
+If you're interested in using the GUI you'll need to have docker and docker-compose installed. After running the bot and collecting some data, you can run these commands to browse your jobs:
+```bash
+cd lucene_view
+docker-compose up --build -d
+```
+Now you can visit [http://Localhost:8888](http://localhost:8888)
+
 
 
 ## Notes
