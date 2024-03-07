@@ -3,7 +3,7 @@
 WHERE companyName <> ''
 AND link <> ''
 ORDER BY id DESC
-LIMIT 500;
+LIMIT 100;
 
 </cfquery>
 
