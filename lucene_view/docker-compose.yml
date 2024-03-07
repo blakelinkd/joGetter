@@ -2,12 +2,12 @@ version: '3'
 
 services:
   lucee:
-    image: lucee/lucee:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "8888:8888"
+      - "3000:3000"
+      - "3001:3001"
     volumes:
       - ./www:/var/www
-    environment:
-      - LUCEE_PASSWORD=myluceepassword # Change this to your desired Lucee password
-      - LUCEE_JAVA_OPTS=-Dlucee.datasources.job_data.driver=org.sqlite.JDBC -Dlucee.datasources.mySQLiteDatabase.class=org.sqlite.JDBC -Dlucee.datasources.mySQLiteDatabase.connectionString=jdbc:sqlite:/var/www/mydatabase.db -Dlucee.datasources.mySQLiteDatabase.username= -Dlucee.datasources.mySQLiteDatabase.password=
-

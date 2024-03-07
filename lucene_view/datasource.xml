@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <Resource 
+        name="jdbc/job_data" 
+        auth="Container" 
+        type="javax.sql.DataSource" 
+        driverClassName="org.sqlite.JDBC"
+        url="jdbc:sqlite:/opt/lucee/web/job_data.db"
+    />
+</Context>
