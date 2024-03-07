@@ -41,7 +41,7 @@ python dice.py
 4. ColdFusion UI
 If you're interested in using the GUI you'll need to have docker and docker-compose installed. After running the bot and collecting some data, you can run these commands to browse your jobs:
 ```bash
-cd lucene_view
+cd lucee_view
 docker-compose up --build -d
 ```
 Now you can visit [http://Localhost:8888](http://localhost:8888)
