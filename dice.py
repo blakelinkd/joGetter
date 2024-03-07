@@ -154,13 +154,13 @@ class DiceBot:
         self.driver.get(self.base_url)
         print('done')
         time.sleep(3)
-        # while True:
-        #     self.extract_links()
-        #     if not self.go_to_next_page():
-        #         break
-        # self.process_links()
-        # os.system('python clean_and_rank.py')
-        # create_outliers_table()
+        while True:
+            self.extract_links()
+            if not self.go_to_next_page():
+                break
+        self.process_links()
+        os.system('python clean_and_rank.py')
+        create_outliers_table()
         self.apply_links()
         self.driver.quit()
 
