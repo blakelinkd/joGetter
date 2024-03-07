@@ -1,7 +1,7 @@
 <table class="table table-striped table-hover">
     <thead>
         <tr>
-            <th scope="col">Companyasdf</th>
+            <th scope="col">Company</th>
             <th scope="col">Job Title</th>
             <th scope="col">Apply Link</th>
             <th scope="col">Applied?</th>
