@@ -5,7 +5,7 @@
     WHERE companyName <> ''
     AND link <> ''
     AND salaryMin <> ''
-    ORDER BY id DESC
+    ORDER BY datePosted DESC
     LIMIT 100;
 </cfquery>
 
