@@ -91,6 +91,7 @@ def configure_chrome_driver():
 
 class DiceBot:
     def __init__(self):
+        load_dotenv()
         print('got driver.')
         self.links = set()
         self.resume_path = os.getenv('RESUME_PATH')
@@ -105,9 +106,10 @@ class DiceBot:
         self.pages = 0
         self.max_pages = 1
     def run(self, search_query="python"):
-        load_dotenv()
         username = os.getenv('DICE_EMAIL_ADDRESS')
         password = os.getenv('DICE_PASSWORD')
+        # print logging in with [username, password]
+        print(f"Logging in with {username}, {password}")        
         self.driver.get("https://www.dice.com/dashboard/login")
         self.driver.implicitly_wait(10)
         time.sleep(3)
@@ -117,8 +119,9 @@ class DiceBot:
             )
             print(email_field)
             email_field.send_keys(username)
+            time.sleep(4)
         except:
-            print("No login fields found.")
+            print("No email fields found.")
             return
 
         try:
@@ -127,8 +130,9 @@ class DiceBot:
             )
             print(password_field)
             password_field.send_keys(password)
+            time.sleep(4)
         except:
-            print("No login fields found.")
+            print("No password fields found.")
             return
 
         try:
@@ -147,7 +151,7 @@ class DiceBot:
 
 
         query_string = urllib.parse.quote(search_query)
-        self.base_url = f'https://www.dice.com/jobs?q={query_string}&location=Remote,%20OR,%20Oklahoma&latitude=43.00594549999999&longitude=-123.8925908&countryCode=US&locationPrecision=City&radius=30&radiusUnit=mi&page=1&pageSize=500&filters.easyApply=true&language=en&eid=4677'
+        self.base_url = f'https://www.dice.com/jobs?q={query_string}&location=Remote,%20OR,%20Oklahoma&latitude=43.00594549999999&longitude=-123.8925908&countryCode=US&locationPrecision=City&radius=30&radiusUnit=mi&page=1&pageSize=500&filters.easyApply=true&language=en&eid=4677&filters.postedDate=SEVEN'
         print('getting base_url')
         self.driver.get(self.base_url)
         print('done')

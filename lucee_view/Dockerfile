@@ -10,7 +10,7 @@ COPY password.txt /opt/lucee/server/lucee-server/context
 # copy the datasource over
 # COPY datasource.xml /opt/lucee/web/lucee-server/context
 
-COPY init.sh /usr/local/bin/init.sh
+COPY init.sh /usr/local/bin/
 # Set the script as executable
 RUN chmod +x /usr/local/bin/init.sh
 # Set the entry point to the initialization script
