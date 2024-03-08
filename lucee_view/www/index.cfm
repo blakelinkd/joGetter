@@ -1,12 +1,20 @@
 <cfquery name="getJobs" datasource="job_data">
-    SELECT * FROM jobs
-WHERE companyName <> ''
-AND link <> ''
-ORDER BY id DESC
-LIMIT 100;
-
+    SELECT id, logo, postTitle, locality || ', ' || country AS location, hasApplied, compatibility_score, companyName, link, salaryMax as salary,
+    strftime('%m/%d/', datePosted) || substr(strftime('%Y', datePosted), 3, 2) AS datePosted
+    FROM jobs
+    WHERE companyName <> ''
+    AND link <> ''
+    AND salaryMin <> ''
+    ORDER BY id DESC
+    LIMIT 100;
 </cfquery>
 
+
+<style>
+.logo {
+    width: 32px;
+}
+</style>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +32,7 @@ LIMIT 100;
     <h1 class="text-center my-4">Explore Latest Job Opportunities</h1>
     <p class="text-center">Search for tech jobs by company name or post title.</p>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 mb-3">
             <form class="form-inline my-2 my-lg-0" id="searchForm">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search by company name or post title" aria-label="Search" id="searchInput">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -34,20 +42,23 @@ LIMIT 100;
     <table class="table table-striped table-hover">
         <thead class="thead-dark">
             <tr>
-                <th scope="col" data-column="0">Company</th>
-                <th scope="col" data-column="1">Post Title</th>
-                <th scope="col" data-column="2">Compatibility</th>
-                <th scope="col" data-column="3">Salary</th>
-                <th scope="col" data-column="4">Job Board</th>
-                <th scope="col" data-column="5">hasApplied</th>
+                <th scope="col" data-column="0"></th>
+                <th scope="col" data-column="1">Company</th>
+                <th scope="col" data-column="2">Location</th>
+                <th scope="col" data-column="3">Post Title</th>
+                <th scope="col" data-column="4">Date</th>
+                <th scope="col" data-column="5">Salary</th>
+                <th scope="col" data-column="6">Job Board</th>
+                <th scope="col" data-column="7">hasApplied</th>
             </tr>
         </thead>
         <tbody>
             <cfoutput query="getJobs">
-                <tr>
+                <tr><td><img class="logo" src="#getJobs.logo#"/></td>
                     <td>#getJobs.companyName#</td>
+                    <td>#getJobs.location#</td>
                     <td>#getJobs.postTitle#</td>
-                    <td>#NumberFormat(getJobs.compatibility_score, '9.99')#</td>
+                    <td>#getJobs.datePosted#</td>
                     <td>#getJobs.salary#</td>
 
                     <td>
@@ -156,24 +167,26 @@ document.addEventListener('DOMContentLoaded', function() {
     
     <!-- Search functionality -->
     document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('searchForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent form submission
+    document.getElementById('searchForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
 
-            var searchQuery = document.getElementById('searchInput').value.trim().toLowerCase();
-            var rows = document.querySelectorAll('tbody tr');
+        var searchQuery = document.getElementById('searchInput').value.trim().toLowerCase();
+        var rows = document.querySelectorAll('tbody tr');
 
-            rows.forEach(function(row) {
-                var company = row.querySelector('td:nth-child(1)').textContent.trim().toLowerCase();
-                var postTitle = row.querySelector('td:nth-child(2)').textContent.trim().toLowerCase();
+        rows.forEach(function(row) {
+            var company = row.querySelector('td:nth-child(2)').textContent.trim().toLowerCase();
+            var location = row.querySelector('td:nth-child(3)').textContent.trim().toLowerCase();
+            var postTitle = row.querySelector('td:nth-child(4)').textContent.trim().toLowerCase();
 
-                if (company.includes(searchQuery) || postTitle.includes(searchQuery)) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
+            if (company.includes(searchQuery) || location.includes(searchQuery) || postTitle.includes(searchQuery)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
         });
     });
+});
+
 
 </script>
 

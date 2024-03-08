@@ -1,5 +1,6 @@
 # & 'C:\Program Files\Google\Chrome\Application\chrome.exe' --remote-debugging-port=9222
 import datetime
+import json
 import random
 import time
 from urllib.parse import parse_qs, quote_plus, urlparse
@@ -45,8 +46,9 @@ class IndeedBot:
         self.medium_compat = 0
         self.easy_apply_count = 0
         self.job_description = ""
-        query_string = urllib.parse.quote("python OR javascript OR SQL")
-        self.base_url = f'https://www.indeed.com/m/jobs?q={query_string}&l=remote&radius=600&limit=500&sort=date&fromage=1&from=mobRdr&vjk=10136f943542b7d7'
+        query_string = urllib.parse.quote(input("type in your search query:"))
+        days="5"
+        self.base_url = f'https://www.indeed.com/m/jobs?q={query_string}&l=remote&radius=600&limit=500&sort=date&fromage={days}&from=mobRdr&vjk=10136f943542b7d7'
         self.total_jobs_count = 0
         self.jobs = []
         self.pages = 0
@@ -94,32 +96,9 @@ class IndeedBot:
             return
 
         for job in job_list:
-            # Checking if the job has already been visited
-            visited_span = None  # Initialize visited_span to None for each job
             job_info = { 
-                "company_name": "",
-                "jobTitle": "",
                 "link": "",
-                "jobDescription": "",
-                "easyApply": False
             }
-            try:
-                visited_span = WebDriverWait(job, 0.2).until(
-                    EC.presence_of_element_located((By.XPATH, ".//span[contains(text(), 'Visited')]"))
-                )
-            except:
-                pass
-            if visited_span:
-                pass
-            
-            try:
-                easily_apply_span = WebDriverWait(job, 0.2).until(
-                    EC.presence_of_element_located((By.XPATH, ".//span[contains(text(), 'Easily apply')]"))
-                )
-                self.easy_apply_count += 1
-                job_info["easyApply"] = True
-            except TimeoutException:
-                pass
 
             try:
                     title_elm = WebDriverWait(job, 0.2).until(
@@ -162,7 +141,7 @@ class IndeedBot:
             for job in self.jobs:
                 try:
                     # Wait up to 30 seconds until the specific element is found
-                    WebDriverWait(self.driver, 0.5).until(
+                    WebDriverWait(self.driver, 0.2).until(
                         EC.presence_of_element_located((By.ID, "challenge-running"))
                     )
                     print("Element found. Verifying you are human. This may take a few seconds.")
@@ -173,7 +152,7 @@ class IndeedBot:
                     return
                     # Element is found, pause the program for 20 seconds
                 except Exception as e:
-                        print('Continuing...')
+                        pass
                 
                 try:
                     parsed_url = urlparse(job["link"])
@@ -192,31 +171,9 @@ class IndeedBot:
                         if row:
                             print(f"Link {job} already exists in the database. Skipping...")
                             continue
-
-                    job_data = {
-                        "companyName": job["company_name"],
-                        "homepage": "",
-                        "postTitle": job["jobTitle"],
-                        "location": "",
-                        "salary": "",
-                        "compatibilityRating": "",
-                        "link": job["link"],
-                        "skills": "",
-                        "jobDescription": "",
-                        "benefits": "",
-                        "createdAt": "",
-                        "jk": jk_param,
-                        "generateLink": "",
-                        "easyApply": job["easyApply"],
-
-                    }
-
-                    job_data["createdAt"] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                    # self.driver.get("https://www.indeed.com")
-                    # wait 5
-                    # time.sleep(random.randint(3, 6))
-                    self.driver.get(job_data["link"])
-                    self.driver.implicitly_wait(3)     
+                    job_data = {}
+                    self.driver.get(job["link"])
+                    self.driver.implicitly_wait(3)
 
                     try:
                             alert = Alert(self.driver)
@@ -224,86 +181,58 @@ class IndeedBot:
                             print(f"\033[93malert closed.\033[0m")
                     except:
                         pass
+                    # Use WebDriverWait to wait for the <script> tag to be present
+                    script_element = WebDriverWait(self.driver, 4).until(
+                        EC.presence_of_element_located((By.XPATH, "//script[@type='application/ld+json']"))
+                    )
 
-                    # try:
-                    #     # Wait up to 30 seconds until the specific element is found
-                    #     WebDriverWait(self.driver, 3).until(
-                    #         EC.presence_of_element_located((By.ID, "challenge-running"))
-                    #     )
-                    #     print("Element found. Verifying you are human. This may take a few seconds.")
-                    #     # Play beep sound
-                    #     frequency = 2500  # Set Frequency To 2500 Hertz
-                    #     duration = 1000  # Set Duration To 1000 ms == 1 second
-                    #     winsound.Beep(frequency, duration)
-                    #     # Element is found, pause the program for 20 seconds
-                    #     return
+                    # Extract the JSON string from the <script> tag
+                    json_str = script_element.get_attribute('innerHTML')
 
-                    # except Exception as e:
-                    #     print("Continuing with the rest of the program...")
+                    # Parse the JSON string into a Python dictionary
+                    data_dict = json.loads(json_str)
 
-                    try:
-                        job_description = WebDriverWait(self.driver, 0.2).until(
-                            EC.presence_of_element_located((By.ID, "jobDescriptionText"))
-                        )
-                        job_data["jobDescription"] = job_description.text
-                    except:
-                        print("Page is broken... Skipping")
-                        continue
-                    try:
-                        company_name = WebDriverWait(self.driver, 0.2).until(
-                            EC.presence_of_element_located((By.CSS_SELECTOR, '#viewJobSSRRoot > div > div.css-1quav7f.eu4oa1w0 > div > div > div.jobsearch-JobComponent.css-u4y1in.eu4oa1w0 > div.jobsearch-InfoHeaderContainer.jobsearch-DesktopStickyContainer.css-zt53js.eu4oa1w0 > div:nth-child(1) > div.css-2wyr5j.eu4oa1w0 > div > div > div > div.css-1h46us2.eu4oa1w0 > div > span > a'))
-                        )
-                        job_data["companyName"] = company_name.text
-                        job_data["homepage"] = company_name.get_attribute('href')
-                        print(f"\033[92m{company_name.text}\033[0m")
-                    except:
-                        pass
-                    try:
-                        post_title = WebDriverWait(self.driver, 0.2).until(
-                            EC.presence_of_element_located((By.CLASS_NAME, "jobsearch-JobInfoHeader-title"))
-                        )
-                        if not post_title.text:
-                            job_data["postTitle"] = post_title.text
-                        print(f"\033[95m{post_title.text}\033[0m")
-                    except:
-                        pass
-                    try:
-                        location = WebDriverWait(self.driver, 0.2).until(
-                            EC.presence_of_element_located((By.XPATH, '//*[@id="viewJobSSRRoot"]/div/div[2]/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[2]'))
-                        )
-                        job_data["location"] = location.text
-                    except:
-                        pass
-                    
-                    try:
-                        salary = WebDriverWait(self.driver, 0.2).until(
-                            EC.presence_of_element_located((By.XPATH, '//*[@id="salaryInfoAndJobType"]/span[1]'))
-                        )
-                        job_data["salary"] = salary.text
-                    except:
-                        pass
+                    job_data["jk"] = jk_param
+                    job_data["jobDescription"] = data_dict.get("description", "").encode('utf-8').decode('unicode-escape')
+                    job_data["locality"] = data_dict.get("jobLocation", {}).get("address", {}).get("addressLocality", "")
+                    job_data["country"] = data_dict.get("jobLocation", {}).get("address", {}).get("addressCountry", "")  # Fixed to addressCountry
+                    job_data["logo"] = data_dict.get("hiringOrganization", {}).get("logo", "").encode('utf-8').decode('unicode-escape')
+                    job_data["easyApply"] = data_dict.get("directApply", "")
+                    job_data["companyName"] = data_dict.get("hiringOrganization", {}).get("name", "")
+                    job_data["postTitle"] = data_dict.get("title", "")
+                    job_data["datePosted"] = data_dict.get("datePosted", "")
+                    job_data["validThrough"] = data_dict.get("validThrough", "")
+                    job_data["employmentType"] = ''.join(data_dict.get("employmentType", []))
+                    job_data["applicantLocationRequirements"] = data_dict.get("applicantLocationRequirements", {}).get("name", "")
+                    job_data["createdAt"] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    job_data["link"] = job.get("link", "")
+                    job_data["generateLink"] = f"http://localhost:5000/generate-document?jk={job_data.get('jk', '')}&job_title={job_data.get('postTitle', '')}&job_description={job_data.get('jobDescription', '')}"
+                    job_data["salaryMin"] = data_dict.get("baseSalary", {}).get("value", {}).get("minValue", "")
+                    job_data["salaryMax"] = data_dict.get("baseSalary", {}).get("value", {}).get("maxValue", "")
 
-                    try:
-                        benefits = WebDriverWait(self.driver, 0.2).until(
-                            EC.presence_of_all_elements_located((By.XPATH, '//*[@id="benefits"]/div/div/span/ul/li'))
-                        )
-                        benefits_list = [benefit.text for benefit in benefits]
-                        job_data["benefits"] = ', '.join(benefits_list)
-
-                        benefits_list = [benefit.text for benefit in benefits]
-                    except:
-                        pass
-
-                    jk = job_data["jk"]
-                    job_title = job_data["postTitle"]
-                    encoded_text = quote_plus(job_data["jobDescription"])
-                    link = f"http://localhost:5000/generate-document?jk={jk}&job_title={job_title}&job_description={encoded_text}"
-                    job_data["generateLink"] = link
+                    print(job_data["postTitle"])
                     cursor.execute('''
-                    INSERT INTO jobs (companyName, homepage, postTitle, location, salary, compatibilityRating, link, skills, jobDescription, benefits, createdAt, jk, generateLink, easyApply)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)
-                    ''', (job_data['companyName'], job_data['homepage'], job_data['postTitle'], job_data['location'], job_data['salary'], job_data['compatibilityRating'], 
-                        job_data['link'], job_data['skills'], job_data['jobDescription'], job_data['benefits'], job_data["createdAt"], job_data["jk"], job_data["generateLink"], job_data["easyApply"]))
+                        INSERT INTO jobs (companyName, logo, easyApply, postTitle, datePosted, validThrough, employmentType, applicantLocationRequirements, createdAt, link, jk, generateLink, jobDescription, locality, country, salaryMax, salaryMin)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        ''', (
+                            job_data['companyName'],
+                            job_data['logo'],
+                            job_data['easyApply'],
+                            job_data['postTitle'],
+                            job_data['datePosted'],
+                            job_data['validThrough'],
+                            job_data['employmentType'],
+                            job_data['applicantLocationRequirements'],
+                            job_data["createdAt"],
+                            job_data['link'],
+                            job_data['jk'],
+                            job_data['generateLink'],
+                            job_data['jobDescription'],
+                            job_data['locality'],
+                            job_data['country'],
+                            job_data['salaryMax'],
+                            job_data['salaryMin']
+                        ))
 
                     job_count += 1
                     conn.commit()
@@ -323,9 +252,9 @@ class IndeedBot:
 def main():
     bot = IndeedBot()
     bot.run()
-    os.system('python compatibility.py')
-    os.system('python skills_nlp.py')
-    os.system('python insert_skills.py')
+    # os.system('python compatibility.py')
+    # os.system('python skills_nlp.py')
+    # os.system('python insert_skills.py')
 
 
 if __name__ == "__main__":

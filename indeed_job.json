@@ -1,0 +1,37 @@
+{
+    "@context": "http:\u002F\u002Fschema.org",
+    "@type": "JobPosting",
+    "description": "<div>\n <div>\n  Ever dream of doing work that makes a difference? Want to join a growing company? Here it is! We seek the talent of a dynamic <b>Accounts Receivable Specialist <\u002Fb>who seeks to bring their A game to a collaborative team of talented professionals. You are not afraid to make impact where your opinion matters in a company that has a masterful, mature history that operates as best-in-class.\n <\u002Fdiv> \n <div><\u002Fdiv>\n <div>\n  The <b>Accounts Receivable Specialist<\u002Fb> collects, maintains, and secures accurate payment and credit information on the assigned customer base. Provides reporting on outstanding account balances, credit applications, and collection activity. Recommends terms and credit limits pertaining to credit and debt repayment.\n <\u002Fdiv>\n <br> \n <div> \n <\u002Fdiv>\n <div>\n  <p><b>Let’s Unpack This – Who are we?<\u002Fb><\u002Fp> \n  <div>\n   Great Plains Supply \u002F Pool &amp; Spa Products is a wholesale distributor of swimming pool and spa equipment, parts and chemicals and is located in Kansas City (Great Plains Supply) and Houston (Pool &amp; Spa Products). Their customer base is in Kansas, Nebraska, Missouri, Northeast Oklahoma (Tulsa), the Gulf Region of Texas and Houston. A family business for nearly 40 years, Steve Reiff founded GPS in 1984, and in 1992 began a partnership with Jay Patterson and Pool &amp; Spa Products (which Jay founded in 1987). To this day, Steve’s daughter, Susan Reiff Ahn, and Jay’s son, Blake Patterson, continue to offer quality wholesale distribution services to the 21st-century swimming pool industry professionals. For more information, visit greatplainspool.com.\n  <\u002Fdiv>\n  <br> \n  <div> \n  <\u002Fdiv>\n  <div>\n   <p><b>What will you be doing?<\u002Fb><\u002Fp> \n   <ul>\n    <li>Cultivates positive customer relationships to promote customer satisfaction and loyalty. Provides excellent customer service through timely customer interaction, problem resolution, or escalation with effective and efficient follow-up.<\u002Fli> \n    <li>Daily pulls an aging report for the assigned customer base. Contacts customers with past due balances greater than 30 days, documents collection efforts, payment status, payment agreements, billing issues, and resolution status. Negotiates payment arrangements with customers and ensures successful outcomes.<\u002Fli> \n    <li>Monitors accounts with a focus on changes in customer payment behaviors to identify potential high-risk accounts. Makes recommendations to place accounts with a collection agency or legal after all collection efforts are exhausted.<\u002Fli> \n    <li>Maintains Over 90% of A\u002FR at 3%.<\u002Fli> \n    <li>Conduct weekly\u002Fbi-weekly\u002Fmonthly AR meetings with the Sales Team to advise next steps with the customers’ accounts in delinquent status.<\u002Fli> \n    <li>Document collection efforts on the ERP system.<\u002Fli> \n    <li>Process, track and apply credit memos against debit memo’s used by customers.<\u002Fli> \n    <li>Responds to credit hold ques in a timely fashion (within 2 minutes) to avoid customer delays at the counter or delivery of order.<\u002Fli> \n    <li>Accurately updates upper management statuses of unpaid receivables of assigned accounts during the monthly executive Credit meeting.<\u002Fli>\n   <\u002Ful>\n   <br> \n  <\u002Fdiv>\n  <div><\u002Fdiv>\n  <p><b>What we need from you:<\u002Fb><\u002Fp> \n  <div>\n   <div>\n    Preferred Job Requirements\n   <\u002Fdiv> \n   <ul>\n    <li>2 or more years’ experience with accounting and related functions.<\u002Fli> \n   <\u002Ful>\n  <\u002Fdiv>\n  <div>\n   Minimum Job Requirements\n  <\u002Fdiv> \n  <div>\n   <ul>\n    <li>High School diploma or its GED equivalent<\u002Fli> \n    <li>1 year or more experience with accounting and related functions.<\u002Fli> \n    <li>High degree of personal ethics, customer service, and commitment to safety.<\u002Fli> \n    <li>Intermediate level in MS Office suite applications<\u002Fli> \n   <\u002Ful>\n   <div>\n    <div>\n     <b>What's in it for you?<\u002Fb>\n    <\u002Fdiv> \n    <div>\n     <ul>\n      <li>Health care (medical, dental, vision, prescription) available the first day of hire!<\u002Fli> \n      <li>401k with company contribution<\u002Fli> \n      <li>Life insurance plus short-term and long-term disability<\u002Fli> \n      <li>HSA\u002FFSA options<\u002Fli> \n      <li>Paid vacations, holidays, and personal time<\u002Fli> \n      <li>Employee Assistance Program<\u002Fli> \n      <li>Employee discounts<\u002Fli> \n      <li>And much more!<\u002Fli>\n     <\u002Ful>\n     <br> \n    <\u002Fdiv> \n   <\u002Fdiv>\n  <\u002Fdiv>\n  <div><\u002Fdiv>\n  <p>We provide equal opportunities for all employees and applicants for employment without regard to sex, age, race, religion, national origin, citizenship status, sexual orientation, gender identification, physical or mental disability, or any service, past, present, or future, in the uniformed services of the United States.<\u002Fp> \n  <p>All candidates who have received a written offer of employment will be required to undergo background screening and testing for commonly abused controlled substances in accordance with our company’s background check and drug testing policy. Motor Vehicle Record checks are also completed for all candidates who have received a written offer of employment to determine insurability for driving a company vehicle as it relates to the position.<\u002Fp> \n  <p>This employer participates in E-Verify and will provide the federal government with your Form I-9 information to confirm that you are authorized to work in the U.S.<\u002Fp> \n  <p>#LI-EK1<\u002Fp>\n <\u002Fdiv>\n<\u002Fdiv>",
+    "jobLocation": {
+        "@type": "Place",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Remote",
+            "addressCountry": "US"
+        }
+    },
+    "hiringOrganization": {
+        "@type": "Organization",
+        "name": "Marcone Appliance Parts",
+        "sameAs": "https:\u002F\u002Fwww.indeed.com\u002Fcmp\u002FMarcone"
+    },
+    "directApply": true,
+    "title": "Accounts Receivable Specialist",
+    "datePosted": "2024-03-08T02:23:48Z",
+    "validThrough": "2024-07-06T07:52:57.999Z",
+    "baseSalary": {
+        "@type": "MonetaryAmount",
+        "currency": "USD",
+        "value": {
+            "@type": "QuantitativeValue",
+            "minValue": 19.0,
+            "maxValue": 24.0,
+            "unitText": "HOUR"
+        }
+    },
+    "jobLocationType": "TELECOMMUTE",
+    "applicantLocationRequirements": {
+        "@type": "Country",
+        "name": "United States"
+    }
+}
