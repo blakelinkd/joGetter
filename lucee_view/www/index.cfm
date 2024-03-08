@@ -14,11 +14,21 @@ LIMIT 100;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Postings</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
 
-<div class="container mx-auto my-auto">
+
+<div class="container middle">
     <h1 class="text-center my-4">Job Postings</h1>
+<div class="row">
+        <div class="col-md-6">
+            <form class="form-inline my-2 my-lg-0" id="searchForm">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="searchInput">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
     <table class="table table-striped table-hover">
         <thead class="thead-dark">
             <tr>
@@ -137,6 +147,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 rows.forEach(function(row) {
                     tbody.appendChild(row);
                 });
+            });
+        });
+    });
+    
+    <!-- Search functionality -->
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            var searchQuery = document.getElementById('searchInput').value.trim().toLowerCase();
+            var rows = document.querySelectorAll('tbody tr');
+
+            rows.forEach(function(row) {
+                var company = row.querySelector('td:nth-child(1)').textContent.trim().toLowerCase();
+                var postTitle = row.querySelector('td:nth-child(2)').textContent.trim().toLowerCase();
+
+                if (company.includes(searchQuery) || postTitle.includes(searchQuery)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
             });
         });
     });
