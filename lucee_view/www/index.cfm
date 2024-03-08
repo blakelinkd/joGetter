@@ -11,20 +11,22 @@ LIMIT 100;
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="Explore the latest job postings from various job boards. Search for jobs by company name or post title.">
+    <meta name="keywords" content="job postings, job search, employment, career, job board">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Postings</title>
+    <title>Job Postings - Explore Latest Job Opportunities</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
 
-
 <div class="container middle">
-    <h1 class="text-center my-4">Job Postings</h1>
-<div class="row">
+    <h1 class="text-center my-4">Explore Latest Job Opportunities</h1>
+    <p class="text-center">Search for tech jobs by company name or post title.</p>
+    <div class="row">
         <div class="col-md-6">
             <form class="form-inline my-2 my-lg-0" id="searchForm">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="searchInput">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search by company name or post title" aria-label="Search" id="searchInput">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
@@ -73,6 +75,7 @@ LIMIT 100;
         </tbody>
     </table>
 </div>
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -173,7 +176,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 </script>
-
 
 </body>
 </html>
