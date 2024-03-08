@@ -54,7 +54,7 @@
         </thead>
         <tbody>
             <cfoutput query="getJobs">
-                <tr><td><img class="logo" src="#getJobs.logo#"/></td>
+                <tr><td>            <img class="logo" src="#getJobs.logo#" onerror="this.style.display='none';"/></td>
                     <td>#getJobs.companyName#</td>
                     <td>#getJobs.location#</td>
                     <td>#getJobs.postTitle#</td>
