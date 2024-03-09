@@ -1,13 +1,31 @@
-<cfquery name="getJobs" datasource="job_data">
-    SELECT id, logo, postTitle, locality || ', ' || country AS location, hasApplied, compatibility_score, companyName, link, salaryMax as salary,
-    strftime('%m/%d/', datePosted) || substr(strftime('%Y', datePosted), 3, 2) AS datePosted
-    FROM jobs
-    WHERE companyName <> ''
-    AND link <> ''
-    AND salaryMin <> ''
-    ORDER BY datePosted DESC
+<cfquery name="getJobs" datasource="lucee">
+    SELECT 
+        id, 
+        logo, 
+        postTitle, 
+        locality || ', ' || country AS location, 
+        hasApplied, 
+        compatibility_score, 
+        companyName, 
+        link, 
+        salaryMax AS salary,
+        TO_CHAR(datePosted, 'MM/DD/') || SUBSTRING(TO_CHAR(datePosted, 'YY') FROM 1 FOR 2) AS datePosted
+    FROM 
+        jobs
+    WHERE 
+        companyName <> '' AND
+        link <> '' AND
+        salaryMin IS NOT NULL
+    ORDER BY 
+        datePosted DESC
     LIMIT 100;
 </cfquery>
+
+
+<!--- 
+<cfquery name="getUsers" datasource="lucee">
+select * from users;
+</cfquery> --->
 
 
 <style>
@@ -27,7 +45,11 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-
+<div class="container middle">
+<!--- <cfoutput query="getUsers">
+    <h1 class="text-center my-4">Welcome, #getUsers.username# #getUsers.email#</h1>
+</cfoutput> --->
+</div>
 <div class="container middle">
     <h1 class="text-center my-4">Explore Latest Job Opportunities</h1>
     <p class="text-center">Search for tech jobs by company name or post title.</p>

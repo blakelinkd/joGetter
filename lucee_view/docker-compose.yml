@@ -11,3 +11,20 @@ services:
       - "3001:3001"
     volumes:
       - ./www:/var/www
+    depends_on:
+      - db
+  db: 
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: lucee
+      POSTGRES_PASSWORD: lucee
+      POSTGRES_DB: lucee
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --locale=en_US.UTF-8"
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

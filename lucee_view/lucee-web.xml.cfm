@@ -29,8 +29,7 @@ Path placeholders:
 
 	<data-sources>
 
-	<data-source allow="511" blob="false" class="org.sqlite.JDBC" clob="false" connectionLimit="-1" connectionTimeout="1" custom="" database="job_data" dbdriver="Other" dsn="jdbc:sqlite:/opt/lucee/web/job_data.db" host="" liveTimeout="15" metaCacheTimeout="60000" name="job_data" param-delimiter="&amp;" param-leading-delimiter="?" param-separator="=" password="" port="-1" storage="false" username="" validate="false"/></data-sources>
-
+	</data-sources>
 	<resources>
     	<!--
         arguments:

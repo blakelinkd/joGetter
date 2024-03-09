@@ -18,18 +18,11 @@ RUN chmod +x /usr/local/bin/init.sh
 # Create a directory for the SQLite JDBC driver
 WORKDIR /opt/lucee/server/lucee-server/bundles
 
-# Download the SQLite JDBC driver using Maven
-RUN mvn dependency:get -Dartifact=org.xerial:sqlite-jdbc:3.34.0:jar -Ddest=sqlite-jdbc-3.34.0.jar
-
 # Copy the SQLite JDBC driver to /usr/local/tomcat/lib
-RUN cp sqlite-jdbc-3.34.0.jar /usr/local/tomcat/lib/
-
-# Download slf4j-api using Maven
-RUN mvn dependency:get -Dartifact=org.slf4j:slf4j-api:1.7.36:jar -Ddest=slf4j-api-1.7.36.jar
+COPY sqlite-jdbc-3.34.0.jar /usr/local/tomcat/lib/
 
 # Copy slf4j-api to /usr/local/tomcat/lib
-RUN cp slf4j-api-1.7.36.jar /usr/local/tomcat/lib/
-
+COPY slf4j-api-1.7.36.jar /usr/local/tomcat/lib/
 
 
 COPY lucee-web.xml.cfm /opt/lucee/web/lucee-web.xml.cfm
