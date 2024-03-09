@@ -1,0 +1,333 @@
+{
+        "props": {
+                "pageProps": {
+                        "initialState": {
+                                "authReducer": {
+                                        "auth": {
+                                                "isLoggedIn": false,
+                                                "legacyBearer": null,
+                                                "accessJwt": null,
+                                                "identityJwt": null
+                                        },
+                                        "peopleId": null,
+                                        "candidateId": null
+                                },
+                                "ssrAuthReducer": {
+                                        "ssrAccessToken": null,
+                                        "ssrLegacyBearer": null,
+                                        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+                                },
+                                "modalReducer": {
+                                        "modal": null
+                                },
+                                "geoHeaderReducer": {
+                                        "xDiceCityLatitude": "35.53180",
+                                        "xDiceCityLongitude": "-98.70280",
+                                        "xDiceCityName": "Weatherford",
+                                        "xDiceCityState": "OK",
+                                        "xDiceClientIp": "57.138.132.130, 10.13.223.152,52.200.88.36",
+                                        "xDiceCountryCode": "US",
+                                        "xDiceRealIp": "10.13.223.152"
+                                },
+                                "api": {
+                                        "queries": {
+                                                "getJobById(\"6a9e6c57-c050-47f0-94a8-1d069bbaf9ce\")": {
+                                                        "status": "fulfilled",
+                                                        "endpointName": "getJobById",
+                                                        "requestId": "RzxWpd4rH2YPKafaqiDuG",
+                                                        "originalArgs": "6a9e6c57-c050-47f0-94a8-1d069bbaf9ce",
+                                                        "startedTimeStamp": 1709913990014,
+                                                        "data": {
+                                                                "statusCode": 200,
+                                                                "statusMessage": "Job Found!",
+                                                                "metadata": [
+                                                                        {
+                                                                                "name": "techJobConfidence",
+                                                                                "value": "1.0"
+                                                                        },
+                                                                        {
+                                                                                "name": "remoteJobConfidence",
+                                                                                "value": "1.6702234279364347E-4"
+                                                                        },
+                                                                        {
+                                                                                "name": "jobValueScore",
+                                                                                "value": "35"
+                                                                        },
+                                                                        {
+                                                                                "name": "yieldMgmtMarketSegment",
+                                                                                "value": "WHOLESALE"
+                                                                        },
+                                                                        {
+                                                                                "name": "isRomJob",
+                                                                                "value": "false"
+                                                                        },
+                                                                        {
+                                                                                "name": "JobQualityScore",
+                                                                                "value": "0.7635294117647059"
+                                                                        },
+                                                                        {
+                                                                                "name": "JobQualityScoreVersion",
+                                                                                "value": "1.0.0"
+                                                                        },
+                                                                        {
+                                                                                "name": "skillsTaxonomyVersion",
+                                                                                "value": "e2Ld4baXYop9c7ZeJC4g2xm3Wwo0ZPLL"
+                                                                        },
+                                                                        {
+                                                                                "name": "extractedSkills",
+                                                                                "value": "[Production support, Red Hat Linux, Shell scripting, A+, RDBMS, IT architecture, Physical layer, Data link layer, Computer science, Linux, SQL, LinkedIn, Bash, Python, Sybase, Murex, Graphical user interface, Scripting, Finance, Software deployment, Debugging, Unix, Shell, Management, Science]"
+                                                                        },
+                                                                        {
+                                                                                "name": "perceivedTechJob",
+                                                                                "value": "true"
+                                                                        }
+                                                                ],
+                                                                "company": {
+                                                                        "groupId": 1906053,
+                                                                        "name": null
+                                                                },
+                                                                "recruiter": {
+                                                                        "displayRecruiterProfile": false,
+                                                                        "id": "2013972",
+                                                                        "recruiterId": null
+                                                                },
+                                                                "skills": [
+                                                                        {
+                                                                                "name": "Linux"
+                                                                        },
+                                                                        {
+                                                                                "name": "GUI"
+                                                                        },
+                                                                        {
+                                                                                "name": "Murex"
+                                                                        },
+                                                                        {
+                                                                                "name": "Redhat"
+                                                                        },
+                                                                        {
+                                                                                "name": "Relational Database"
+                                                                        },
+                                                                        {
+                                                                                "name": "Shell Scripting"
+                                                                        },
+                                                                        {
+                                                                                "name": "Sybase"
+                                                                        },
+                                                                        {
+                                                                                "name": "Unix"
+                                                                        }
+                                                                ],
+                                                                "applicationDetail": {
+                                                                        "email": "abhishek.s@1pointsys.com",
+                                                                        "ccEmail": "rbcrecruiter0@gmail.com",
+                                                                        "easyApply": true,
+                                                                        "type": "APPLY_TO_EMAIL",
+                                                                        "url": null
+                                                                },
+                                                                "employmentDetail": {
+                                                                        "type": "CONTRACT",
+                                                                        "contract": {
+                                                                                "term": "12 Months",
+                                                                                "types": [
+                                                                                        "CONTRACT_W2",
+                                                                                        "CONTRACT_CORP_TO_CORP"
+                                                                                ]
+                                                                        },
+                                                                        "directHire": null,
+                                                                        "travel": {
+                                                                                "percentage": "TRAVEL_NULL"
+                                                                        },
+                                                                        "willingToSponsor": null
+                                                                },
+                                                                "dateDeactivated": "2024-04-08T14:52:05.000Z",
+                                                                "dateFirstActive": "2024-03-08T15:52:05.000Z",
+                                                                "datePosted": "2024-03-08T15:52:05.000Z",
+                                                                "dateUpdated": "2024-03-08T15:52:05.000Z",
+                                                                "description": "\u003c!DOCTYPE html\u003e\u003chtml\u003e\u003chead\u003e\u003c/head\u003e\u003cbody\u003e\u003cp\u003eTitle : Linux Software Engineer\u003cbr /\u003eLocation : New York, NY, United States\u003cbr /\u003e100% Remote\u003c/p\u003e\u003cp\u003eLinkedIn is must \u003c/p\u003e\u003cp\u003e\u003cbr /\u003eDescription:\u003c/p\u003e\u003cp\u003eMust have Linux development experience but this role also includes production support. \u003cbr /\u003eThey will be pinged throughout the day for issues. \u003cbr /\u003eThey are using Linux Redhat \u003cbr /\u003eMust have exp with Bash or Shell Scripting (python optional) \u003cbr /\u003eThey use Sybase.\u003c/p\u003e\u003cp\u003eThis is a Linux developer role with production support Murex is a plus, nice to have - they are using Murex 3.1 - this is the GUI aspect of the job - know the screen This is more about Linux and scripting than Murex But must come out of a financial firm.\u003c/p\u003e\u003cp\u003eRequired Skills: \u003cbr /\u003eSHELL SCRIPTING\u003cbr /\u003eRELATIONAL DATABASE\u003cbr /\u003eDEPLOYMENT\u003cbr /\u003eSYBASE\u003cbr /\u003eTECHNICAL ARCHITECTURE\u003c/p\u003e\u003cp\u003e\u003cbr /\u003e- Responsible for support activities for Murex DEV and TEST environments (Refreshes, Debugging, BAU tasks)\u003cbr /\u003eSkills: Skills\u003cbr /\u003e- Unix/Linux Knowledge\u003cbr /\u003e- Shell/Bash/Python Scripting\u003cbr /\u003e- Relational Database and SQL Knowledge (Sybase preferred)\u003cbr /\u003e- MX.3 Environments Management/Deployment/Monitoring (L1/L2)\u003cbr /\u003e- MX.3 Technical Architecture Knowledge\u003cbr /\u003eKeywords:\u003cbr /\u003eEducation: Education\u003c/p\u003e\u003cp\u003e- Bachelor of Engineering or Science in Computer Science Skills and Experience:\u003cbr /\u003eRequired Skills: \u003cbr /\u003eSHELL SCRIPTING\u003cbr /\u003eRELATIONAL DATABASE\u003cbr /\u003eDEPLOYMENT\u003cbr /\u003eSYBASE\u003cbr /\u003eTECHNICAL ARCHITECTURE\u003cbr /\u003eAdditional Skills:\u003cbr /\u003ePYTHON\u003cbr /\u003eSCRIPTING\u003cbr /\u003eSQL\u003cbr /\u003eUNIX\u003c/p\u003e\u003c/body\u003e\u003c/html\u003e",
+                                                                "detailView": {
+                                                                        "absoluteUrl": "https://www.dice.com/job-detail/6a9e6c57-c050-47f0-94a8-1d069bbaf9ce",
+                                                                        "relativeUrl": "/job-detail/6a9e6c57-c050-47f0-94a8-1d069bbaf9ce",
+                                                                        "templateType": "PAID",
+                                                                        "suppressAds": false
+                                                                },
+                                                                "compensationDetail": {
+                                                                        "rawText": "Depends on Experience",
+                                                                        "type": null
+                                                                },
+                                                                "id": "6a9e6c57-c050-47f0-94a8-1d069bbaf9ce",
+                                                                "legacyJobId": "3397f5ef9eff69ee99862fd1fa3fa242",
+                                                                "referenceCode": "8217966",
+                                                                "title": "Linux Engineer with SQL",
+                                                                "status": "ACTIVE",
+                                                                "locationDetail": {
+                                                                        "locations": [
+                                                                                {
+                                                                                        "city": null,
+                                                                                        "country": null,
+                                                                                        "latitude": "0.0",
+                                                                                        "longitude": "0.0",
+                                                                                        "postalCode": null,
+                                                                                        "preferred": true,
+                                                                                        "state": null,
+                                                                                        "street": null
+                                                                                }
+                                                                        ],
+                                                                        "remote": true,
+                                                                        "workFromHome": false,
+                                                                        "onsite": false,
+                                                                        "hybrid": false,
+                                                                        "hybridDetails": null
+                                                                },
+                                                                "titleSanitized": "Linux Engineer with SQL",
+                                                                "dateFirstActiveAgo": "moments ago",
+                                                                "dateUpdatedAgo": "moments ago"
+                                                        },
+                                                        "fulfilledTimeStamp": 1709913990116
+                                                },
+                                                "getCompanyById({\"groupId\":1906053,\"representedBrand\":null})": {
+                                                        "status": "fulfilled",
+                                                        "endpointName": "getCompanyById",
+                                                        "requestId": "1Fam_mRqn2jd9yJnKY0Pd",
+                                                        "originalArgs": {
+                                                                "groupId": 1906053,
+                                                                "representedBrand": null
+                                                        },
+                                                        "startedTimeStamp": 1709913990116,
+                                                        "data": {
+                                                                "companyId": "0ded122f-3d5c-431e-9d81-63833fc13df8",
+                                                                "desc": "1 Point System",
+                                                                "groupId": 1906053,
+                                                                "logoUrl": "https://prod-file-upload-store.s3.amazonaws.com/50gSqfHTKOsXqCBHSDSw_b8f757e46eeeadafb7ea776b6df868c4.jpg",
+                                                                "name": "91001743",
+                                                                "productType": "Subscription",
+                                                                "profileUrl": "https://www.dice.com/company-profile/6897f022-806d-5100-984e-05f2323fb2e0",
+                                                                "status": "ACTIVE",
+                                                                "employerBrandingAssets": {
+                                                                        "legacy_company_id": 1906053,
+                                                                        "brand_max_template": null,
+                                                                        "paid": false,
+                                                                        "hex_background": null,
+                                                                        "company_overview": "At 1 Point System, we use our imminent, facts and countrywide resources to make incomparable connections every day by providing you a full continuum of IT staffing services countrywide to organizations that necessitate on-demand scientific expertise. Working with us gives you instantaneous access to highly practiced, pre-evaluated expertise professionals for any kind of IT hiring need.\u003cbr\u003e\u003cbr\u003e\u003cbr\u003e\u003cbr\u003eOur mission is to help our customer s source and employ the most competent IT professionals, and to offer those candidates with the best job opportunities in their relevant fields. We associate with your human resources and /or IT managers to develop the effectiveness of your employment processes. Our ability to source and recruit advanced technical talent is rivaled only by our deep dedication to servicing our client s recruitment needs. We strive to make a distinction ourselves by providing a level of service beyond compare in the industry. \u003cbr\u003e\u003cbr\u003e \u003cbr\u003e\u003ca href='https://1pointsys.com/' target='_blank'\u003eCompany\u003c/a\u003e\u003cbr\u003e",
+                                                                        "company_profile_url": "https://www.dice.com/company-profile/6897f022-806d-5100-984e-05f2323fb2e0",
+                                                                        "tracking_pixel": null,
+                                                                        "company_name": "1 Point System",
+                                                                        "company_branding_images": [
+                                                                                {
+                                                                                        "container": "prod-file-upload-store",
+                                                                                        "date": "2023-03-13T03:30:02.272Z",
+                                                                                        "filename": "b8f757e46eeeadafb7ea776b6df868c4.jpg",
+                                                                                        "handle": null,
+                                                                                        "key": "50gSqfHTKOsXqCBHSDSw_b8f757e46eeeadafb7ea776b6df868c4.jpg",
+                                                                                        "mimetype": "image/jpeg",
+                                                                                        "size": 2747,
+                                                                                        "upload_id": null,
+                                                                                        "url": "https://prod-file-upload-store.s3.amazonaws.com/50gSqfHTKOsXqCBHSDSw_b8f757e46eeeadafb7ea776b6df868c4.jpg",
+                                                                                        "typename": null,
+                                                                                        "label": "Logo"
+                                                                                }
+                                                                        ],
+                                                                        "company_videos": [],
+                                                                        "social_handles": []
+                                                                }
+                                                        },
+                                                        "fulfilledTimeStamp": 1709913990178
+                                                }
+                                        },
+                                        "mutations": {},
+                                        "provided": {},
+                                        "subscriptions": {
+                                                "getJobById(\"6a9e6c57-c050-47f0-94a8-1d069bbaf9ce\")": {
+                                                        "RzxWpd4rH2YPKafaqiDuG": {}
+                                                },
+                                                "getCompanyById({\"groupId\":1906053,\"representedBrand\":null})": {
+                                                        "1Fam_mRqn2jd9yJnKY0Pd": {}
+                                                }
+                                        },
+                                        "config": {
+                                                "online": true,
+                                                "focused": true,
+                                                "middlewareRegistered": true,
+                                                "refetchOnFocus": false,
+                                                "refetchOnReconnect": false,
+                                                "refetchOnMountOrArgChange": false,
+                                                "keepUnusedDataFor": 60,
+                                                "reducerPath": "api"
+                                        }
+                                },
+                                "correlationIdReducer": {
+                                        "correlationId": "12ca3a64-d3d1-43e3-a9ca-ab7a8c26a969"
+                                },
+                                "featuresReducer": {
+                                        "showAds": false
+                                },
+                                "djvContext": {
+                                        "jobId": "6a9e6c57-c050-47f0-94a8-1d069bbaf9ce",
+                                        "canonical": "https://www.dice.com/job-detail/6a9e6c57-c050-47f0-94a8-1d069bbaf9ce",
+                                        "disabled": "",
+                                        "searchLink": "search/?q=linux\u0026location=Remote,%20OR%2097458,%20USA\u0026latitude=43.0059455\u0026longitude=-123.8925908\u0026countryCode=US\u0026locationPrecision=City\u0026adminDistrictCode=OR\u0026radius=30\u0026radiusUnit=mi\u0026page=1\u0026pageSize=20\u0026language=en\u0026eid=4677",
+                                        "isActive": true,
+                                        "debug": false,
+                                        "features": "",
+                                        "companyBrandMaxInfo": {},
+                                        "correlationId": "12ca3a64-d3d1-43e3-a9ca-ab7a8c26a969",
+                                        "suppressAds": false,
+                                        "optimize": null,
+                                        "antiFlicker": false,
+                                        "environment": "prod"
+                                },
+                                "awsWafHeaderReducer": {
+                                        "xAamznWafXBotControl": null
+                                },
+                                "employerBranding": {
+                                        "bannerImage": null,
+                                        "companyDescription": null,
+                                        "companyLogo": null,
+                                        "mediaSlot1": null,
+                                        "mediaSlot2": null,
+                                        "templateType": null,
+                                        "socialHandles": null,
+                                        "hexColor": null,
+                                        "companyProfileUrl": null,
+                                        "companyName": null,
+                                        "isRepresentedBrand": false
+                                },
+                                "toast": {
+                                        "visible": false,
+                                        "message": ""
+                                },
+                                "company": {
+                                        "groupId": 1906053,
+                                        "logoUrl": "https://prod-file-upload-store.s3.amazonaws.com/50gSqfHTKOsXqCBHSDSw_b8f757e46eeeadafb7ea776b6df868c4.jpg",
+                                        "name": "1 Point System",
+                                        "profileUrl": "https://www.dice.com/company-profile/6897f022-806d-5100-984e-05f2323fb2e0"
+                                }
+                        }
+                },
+                "__N_SSP": true
+        },
+        "page": "/[id]",
+        "query": {
+                "searchlink": "search/?q=linux\u0026location=Remote,%20OR%2097458,%20USA\u0026latitude=43.0059455\u0026longitude=-123.8925908\u0026countryCode=US\u0026locationPrecision=City\u0026adminDistrictCode=OR\u0026radius=30\u0026radiusUnit=mi\u0026page=1\u0026pageSize=20\u0026language=en\u0026eid=4677",
+                "searchId": "c78219ed-4e57-4330-aca8-304a6de1d4a4",
+                "id": "6a9e6c57-c050-47f0-94a8-1d069bbaf9ce"
+        },
+        "buildId": "oA6klnx3qAr_kql7Tx_3a",
+        "assetPrefix": "/job-detail",
+        "isFallback": false,
+        "dynamicIds": [
+                7957,
+                3999,
+                4314,
+                9781,
+                4285,
+                54,
+                1656,
+                7462,
+                3108,
+                6619,
+                8799,
+                611
+        ],
+        "gssp": true,
+        "scriptLoader": []
+}
