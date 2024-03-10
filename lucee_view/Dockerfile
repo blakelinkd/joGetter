@@ -1,4 +1,8 @@
-FROM lucee/lucee:latest
+FROM lucee/lucee:5.3.9.133-tomcat9.0-jdk11-openjdk
+
+RUN sed -i 's/htt[p|ps]:\/\/archive.ubuntu.com\/ubuntu\//mirror:\/\/mirrors.ubuntu.com\/mirrors.txt/g' /etc/apt/sources.list
+
+
 # Install Maven
 RUN apt-get update && apt-get install -y maven npm
 
@@ -24,7 +28,6 @@ COPY sqlite-jdbc-3.34.0.jar /usr/local/tomcat/lib/
 # Copy slf4j-api to /usr/local/tomcat/lib
 COPY slf4j-api-1.7.36.jar /usr/local/tomcat/lib/
 
-
-COPY lucee-web.xml.cfm /opt/lucee/web/lucee-web.xml.cfm
+COPY Application.cfc /var/www
 ENTRYPOINT ["/usr/local/bin/init.sh"]
 

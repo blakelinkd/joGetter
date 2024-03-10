@@ -6,7 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-bs": "npx browser-sync start --proxy \"lucee:8888\" --files \"*.cfm, *.css, *.js, jobs/components/**/*.cfm, css/**/*.css, jobs/tags/**/*.cfm\""
-
   },
   "author": "",
   "license": "ISC",
