@@ -28,6 +28,5 @@ COPY sqlite-jdbc-3.34.0.jar /usr/local/tomcat/lib/
 # Copy slf4j-api to /usr/local/tomcat/lib
 COPY slf4j-api-1.7.36.jar /usr/local/tomcat/lib/
 
-COPY Application.cfc /var/www
 ENTRYPOINT ["/usr/local/bin/init.sh"]
 
