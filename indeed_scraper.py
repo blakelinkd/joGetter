@@ -21,6 +21,8 @@ from selenium.webdriver.common.alert import Alert
 import psycopg2
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service as ChromeService
+from dotenv import load_dotenv
+
 
 
 def configure_chrome_driver():
@@ -39,7 +41,13 @@ def configure_chrome_driver():
 
 class IndeedBot:
     def __init__(self):
+        load_dotenv()
         self.driver = configure_chrome_driver()
+        self.pg_password = os.getenv('PG_PASSWORD')
+        self.pg_username = os.getenv('PG_USERNAME')
+        self.pg_host = os.getenv('PG_HOST')
+        
+        
         self.links = set()
         self.high_compat = 0
         self.low_compat = 0
@@ -134,9 +142,9 @@ class IndeedBot:
             try:
                 conn = psycopg2.connect(
                     dbname="lucee", 
-                    user="lucee", 
-                    password="lucee", 
-                    host="localhost"
+                    user=self.pg_username, 
+                    password=self.pg_password, 
+                    host=self.pg_host
                 )
             except Exception as e:
                 print(f"a db occurred: {e}")
