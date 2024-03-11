@@ -55,7 +55,7 @@ class IndeedBot:
         self.easy_apply_count = 0
         self.job_description = ""
         query_string = urllib.parse.quote(input("type in your search query:"))
-        days="7"
+        days="5"
         self.base_url = f'https://www.indeed.com/m/jobs?q={query_string}&l=remote&radius=600&limit=500&sort=date&fromage={days}&from=mobRdr&vjk=10136f943542b7d7'
         self.total_jobs_count = 0
         self.jobs = []

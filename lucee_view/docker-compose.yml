@@ -18,13 +18,25 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_USER: lucee
-      POSTGRES_PASSWORD: lucee
-      POSTGRES_DB: lucee
+      POSTGRES_USER: ${PG_USERNAME}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: ${PG_HOST}
       POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --locale=en_US.UTF-8"
       POSTGRES_HOST_AUTH_METHOD: "trust"
     volumes:
       - ./pgdata:/var/lib/postgresql/data
-
+  flaskapp:
+    build:
+      context: ./flaskapp
+      dockerfile: Dockerfile
+    environment:
+          PG_USER: ${PG_USERNAME}
+          PG_PASSWORD: ${PG_PASSWORD}
+          PG_DB: ${PG_HOST}
+          PG_DB_NAME: ${PG_DB_NAME}
+    ports:
+    - "5000:5000"
+    volumes:
+      - ./flaskapp:/flaskapp
 volumes:
   pgdata:
