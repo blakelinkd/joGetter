@@ -3,8 +3,8 @@ import psycopg2
 # Predefined dictionary of keywords with weights
 keywords = {
     "Python": 3, "Perl": 1, "serverless": 1, "NoSQL": 1, "DB2": 1, "HTML": 1, "CSS": 1, "SASS": 1, "LESS": 1, "JavaScript": 2,
-    "Java": 2, "Node.js": 2, "Agile": 1, "AWS": 1, "CloudFormation": 1, "Lambda": 2, "Jest": 1, "Cypress": 3,
-    "SharePoint": 1, "DynamoDB": 1, "Django": 4, "Jira": 1, "Next.js": 4, "ORM": 1, "React": 4, "WCAG": 1, "SonarQube": 1,
+    "Java": 2, "Node.js": 2, "Nodejs": 2, "Agile": 1, "AWS": 1, "CloudFormation": 1, "Lambda": 2, "Jest": 1, "Cypress": 3,
+    "SharePoint": 1, "DynamoDB": 1, "Django": 4, "Jira": 1, "Next.js": 4, "Nextjs": 4, "ORM": 1, "React": 4, "WCAG": 1, "SonarQube": 1,
     "Kubernetes": 2, "Prometheus": 1, "Grafana": 1, "Terraform": 1, "CI/CD": 2, "Docker": 2, "Flask": 3,
     "PostgreSQL": 1, "Nginx": 1, "Elasticsearch": 1, "Logstash": 1, "Kibana": 1, "BuildKite": 1, "Linux": 3,
     "Angular": 1, "Redux": 1, "SQLAlchemy": 1, "Prisma.js": 1, "FastAPI": 1, "ServiceNow": 1, "Pandas": 1, "Selenium": 3,

@@ -57,10 +57,10 @@ class IndeedBot:
         self.pg_username = os.getenv('PG_USERNAME')
         self.pg_host = os.getenv('PG_HOST')
         self.connection_pool = psycopg2.pool.SimpleConnectionPool(1, 10,
-                                                                   dbname="lucee",
-                                                                   user=self.pg_username,
-                                                                   password=self.pg_password,
-                                                                   host=self.pg_host)
+            dbname="lucee",
+            user=self.pg_username,
+            password=self.pg_password,
+            host=self.pg_host)
         
         self.links = set()
         self.high_compat = 0
@@ -74,7 +74,7 @@ class IndeedBot:
 
         days="last"
         self.location = "remote"
-        self.base_url = f'https://www.indeed.com/m/jobs?q={query_string}&l={self.location}&radius=30&limit=500&sort=date&fromage={days}&from=mobRdr&vjk=10136f943542b7d7'
+        self.base_url = f'https://www.indeed.com/m/jobs?q={query_string}&l={self.location}&radius=30&limit=500&sort=date&fromage={days}'
         self.total_jobs_count = 0
         self.jobs = []
         self.pages = 0
@@ -351,9 +351,10 @@ def main():
         freq = 1000  # Frequency in Hertz
         winsound.Beep(freq, duration)
 
-while True:
-    main()
-    # sleep between 5 and 10 minutes
-    ra = random.uniform(5, 10)
-    time.sleep(ra * 60)  # Wait for 5 minutes
+main()
+# while True:
+#     main()
+#     # sleep between 5 and 10 minutes
+#     ra = random.uniform(5, 10)
+#     time.sleep(ra * 60)  # Wait for 5 minutes
 
