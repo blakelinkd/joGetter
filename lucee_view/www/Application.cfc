@@ -1,3 +1,11 @@
+// component {
+//     this.name = "YourApplicationName";
+//     // Initialize your REST application
+//     restInitApplication(
+//         directoryPath="controllers",
+//         serviceMapping="hello"
+//     );
+// }
 component displayname="Application" output="false" hint="Handle the application" {
    this.datasources["lucee"] = {
         class: 'org.postgresql.Driver'
@@ -14,14 +22,7 @@ component displayname="Application" output="false" hint="Handle the application"
     };
 
     
-    component {
-    this.name = "YourApplicationName";
-    // Initialize your REST application
-    restInitApplication(
-        directoryPath="controllers",
-        serviceMapping="hello"
-    );
-}
+    
     /**
     * @hint First function run when Lucee receives the first request. 
     */
@@ -106,5 +107,3 @@ component displayname="Application" output="false" hint="Handle the application"
         return;
     }
 }
-
-

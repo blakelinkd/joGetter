@@ -8,6 +8,7 @@ __pycache__/
 node_modules/
 chromedriver-win64/
 BlakeLinkResume.pdf
+child_pages
 # C extensions
 *.so
 app_secrets.py

@@ -24,7 +24,7 @@ from psycopg2 import pool
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service as ChromeService
 from dotenv import load_dotenv
-
+import cv_locator
 
 
 def configure_chrome_driver():
@@ -68,66 +68,80 @@ class IndeedBot:
         self.medium_compat = 0
         self.easy_apply_count = 0
         self.job_description = ""
-        # query_string = urllib.parse.quote(input("type in your search query:"))
-        query_string = urllib.parse.quote(f"SRE, SDET, Django, software engineer, SDET, Software Developer, Python, React, Angular, JavaScript, Kubernetes, Docker, Developer, Engineer, Programmer")
-        # query_string = urllib.parse.quote(f"python, react, linux, docker, kubernetes")
-
+        query_string = urllib.parse.quote(f"HTML, CSS, SRE, SDET, test, testing, Django, software engineer, Software Developer, Python, React, Angular, JavaScript, Kubernetes, Docker, Developer, Engineer, Programmer, Web Developer, React Developer, Angular Developer, Nextjs")
+        # query_string = urllib.parse.quote(f"SDET, QA, Test, Testing, Automation, Quality")
+        # query_string= urllib.parse.quote(input("query: "))
         days="last"
+        self.filter_flag = False
         self.location = "remote"
         self.base_url = f'https://www.indeed.com/m/jobs?q={query_string}&l={self.location}&radius=30&limit=500&sort=date&fromage={days}'
         self.total_jobs_count = 0
         self.jobs = []
+        # We could put these words in a config file somewhere, or the database
+        self.restricted_words = ["mulesoft", "iot", "threat", "teamcenter", "Owner", "Power", "mechanical", "Open Text", "lead", "design", "principal", "security", "GIS", "staff", "director", "executive",
+                                 "Sales", "Analyst", "Controls", "Machine", "ML", "Oracle", "salesforce", "365", 
+                                 "sharepoint", "servicenow", "sailpoint", "Manage", "TS/SCI", "Cleared", "Clearance", "Secret",
+                                 "Appian", "Audio", "Video", "Assessor", "Alteryx", "Temporary", "Android", "Mobile", "ios", "appium",
+                                 "President", "Network", "Blockchain", "crypto", "SecOps", "VP", "Embedded", "iot",
+                                 "Simulation", "naval", "electrical", "microsoft", "executive", "Mgr", "DevSec", "Environmental",
+                                 "Civil", "Coordinator", "Copywriter", "ipaas", "Bilingual", "Analytics", "bioinformatic", 
+                                 "Capitol One", "Federal", "Estimator", "army", "govern", "Business Intelligence", "Hl7",
+                                 "Surveyor", "clinical", "marketing", "Analyst", "biologist", "Adobe", "photo", "graphics",
+                                 "Construction", "wireless", "hardware", "Detailer", "Structural", "penetration", "business",
+                                 "Ambassador", "Process", "Enablement", "Scientist", ]
         self.pages = 0
         self.max_pages = 1
-
-                # Define a list of user agents that would visit a website from a desktop browser
+        self.iteration_counter = 0
         self.user_agents = [
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36",
             "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Safari/605.1.15",
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Firefox/87.0",
-            # Add more user agents as needed
         ]
-
-        # Initialize a counter to keep track of the number of iterations
-        self.iteration_counter = 0
     
     def detect_bot_detection(self):
         try:
-            # Detect bot detection
             WebDriverWait(self.driver, 3).until(
                 EC.presence_of_element_located((By.ID, "challenge-running"))
             )
             print("Element found. Verifying you are human. This may take a few seconds.")
+
             frequency = 2500  # Set Frequency To 2500 Hertz
             duration = 1000  # Set Duration To 1000 ms == 1 second
-            # winsound.Beep(frequency, duration)
-            time.sleep(20)
-            return True
+            winsound.Beep(frequency, duration)
+            # # human_verify = cv_locator.find_and_click_image("images/human_verify.png", timeout=7)
+            # while cv_locator.find_and_click_image("images/human_verify.png", timeout=7):
+            #     print('trying to bypass bot detection...')
+            # time.sleep(5)
         except Exception as e:
             return False
+        return True
     
     
     def run(self):
          # List of popular websites
-        popular_websites = ["https://www.bing.com", "https://www.indeed.com", "https://www.google.com", "https://www.facebook.com", "https://www.youtube.com"]
+        # popular_websites = ["https://www.bing.com", "https://www.indeed.com", "https://www.google.com", "https://www.facebook.com", "https://www.youtube.com"]
         wait_time = random.uniform(3, 15)
 
-        # Visit three random websites from the list
-        for _ in range(3):
-            random_website = random.choice(popular_websites)
-            self.driver.get(random_website)
+        # # Visit three random websites from the list
+        # for _ in range(3):
+        #     random_website = random.choice(popular_websites)
+        #     self.driver.get(random_website)
+        #     time.sleep(wait_time)
 
-            # Wait for a random duration between 3 to 5 seconds
-            time.sleep(wait_time)
-
-        # Finally, visit the base URL
         self.driver.get(self.base_url)
-        time.sleep(wait_time)
+        time.sleep(3)
         self.detect_bot_detection()
         time.sleep(3)
         while True:
             if self.detect_bot_detection():
                 break
+            # while self.detect_bot_detection():
+            #     print('trying to bypass bot detection.')
+            
+            # if self.detect_bot_detection():
+            #     print('sleeping for bot detection...')
+            #     time.sleep(10)
+            time.sleep(5)
             self.extract_links()
             if not self.go_to_next_page():
                 break
@@ -165,6 +179,9 @@ class IndeedBot:
             except TimeoutException:
                 print("No title or link found.")
             
+            if self.filter_flag and any(word.lower() in job_info["jobTitle"].lower() for word in self.restricted_words):
+                print("filtered: {}".format(job_info["jobTitle"]))
+                continue
             self.total_jobs_count += 1
             self.jobs.append(job_info)
         print(f"\033[91m{self.total_jobs_count} new jobs found.\033[0m")
@@ -183,10 +200,8 @@ class IndeedBot:
         return True
 
     def filter_jobs(self):
-        # Get a database connection from the connection pool
         conn = self.connection_pool.getconn()
         cursor = conn.cursor()
-
         # Extract 'jk' values from the job links and add them to the jobs
         valid_jobs = []
         jk_values = []  # This will store just the 'jk' values for the SQL query

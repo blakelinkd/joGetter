@@ -2,18 +2,18 @@ import psycopg2
 
 # Predefined dictionary of keywords with weights
 keywords = {
-    "Python": 3, "Perl": 1, "serverless": 1, "NoSQL": 1, "DB2": 1, "HTML": 1, "CSS": 1, "SASS": 1, "LESS": 1, "JavaScript": 2,
-    "Java": 2, "Node.js": 2, "Nodejs": 2, "Agile": 1, "AWS": 1, "CloudFormation": 1, "Lambda": 2, "Jest": 1, "Cypress": 3,
-    "SharePoint": 1, "DynamoDB": 1, "Django": 4, "Jira": 1, "Next.js": 4, "Nextjs": 4, "ORM": 1, "React": 4, "WCAG": 1, "SonarQube": 1,
-    "Kubernetes": 2, "Prometheus": 1, "Grafana": 1, "Terraform": 1, "CI/CD": 2, "Docker": 2, "Flask": 3,
-    "PostgreSQL": 1, "Nginx": 1, "Elasticsearch": 1, "Logstash": 1, "Kibana": 1, "BuildKite": 1, "Linux": 3,
-    "Angular": 1, "Redux": 1, "SQLAlchemy": 1, "Prisma.js": 1, "FastAPI": 1, "ServiceNow": 1, "Pandas": 1, "Selenium": 3,
-    "CSS": 1, "semantic HTML": 1, "TypeScript": 1, "SQL": 1, "support": 2, "C#": 1, ".NET": 1, "Blazor": 1,
-    "Ubuntu": 2, "OOP": 1, "TDD": 1, "Responsive": 1, "SPA": 1, "Git": 2, "Jenkins": 2, "Redis": 1, "Spring": 1, "JPA": 1,
-    "Microservice": 1, "API": 1, "ColdFusion": 2, "Lucee": 1, "CFML": 1, "REST": 1
+    "htmx": 5, "Ember.js": 5, "Backbone.js": 5, "Next.js": 5, "vue": 5, "svelte": 5, "typescript": 5, "devops": 2, "SDLC": 5, "Python": 9, "Perl": 3, "serverless": 2, "NoSQL": 1, "DB2": 1, "HTML": 1, "CSS": 3, "SASS": 2, "LESS": 2, "JavaScript": 5,
+    "Java": 3, "ColdFusion": 4, "Node.js": 3, "Nodejs": 3, "Agile": 1, "AWS": 1, "CloudFormation": 1, "Lambda": 2, "pytest": 5, "nosetest":5, "playwright": 5, "Jest": 5, "Cypress": 5,
+    "Moq":1, "mock": 2, "mocha": 2, "SharePoint": 1, "DynamoDB": 1, "Django": 4, "Jira": 1, "Next.js": 5, "Nextjs": 5, "ORM": 1, "React": 5, "WCAG": 3, "SonarQube": 1,
+    "Kubernetes": 4, "Prometheus": 2, "Grafana": 3, "BDD": 5, "cucumber": 5, "gherkin": 5, "Terraform": 1, "CI/CD": 3, "Docker": 4, "integration": 3, "Flask": 5,
+    "PostgreSQL": 2, "Nginx": 1, "Elasticsearch": 3, "Logstash": 2, "Kibana": 2, "BuildKite": 1, "Linux": 5,
+    "Angular": 5, "Redux": 2, "SQLAlchemy": 1, "Prisma.js": 2, "FastAPI": 4, "ServiceNow": 1, "Pandas": 1, "Selenium": 5,
+    "CSS": 1, "semantic HTML": 1, "TypeScript": 1, "SQL": 1, "support": 3, "C#": 3, ".NET": 3, "Blazor": 4,
+    "Ubuntu": 2, "TDD": 5, "Responsive": 1, "SPA": 1, "Git": 4, "Jenkins": 4, "Redis": 1, "Spring": 1, "JPA": 1,
+    "Microservice": 1, "API": 1, "ColdFusion": 2, "Lucee": 1, "CFML": 1, "REST": 1, "automation": 2, "testing": 2, 
 }
 
-# Modified function to calculate compatibility rating and get matched skills
+
 def get_compatibility_rating_and_skills(description, keywords):
     skill_count = {}
     description_lower = description.lower()

@@ -151,7 +151,7 @@ class DiceBot:
 
 
         query_string = urllib.parse.quote(search_query)
-        self.base_url = f'https://www.dice.com/jobs?q={query_string}&location=Remote,%20OR%2097458,%20USA&latitude=43.00594549999999&longitude=-123.8925908&countryCode=US&locationPrecision=City&radius=30&radiusUnit=mi&page=1&pageSize=500&language=en&eid=4677'
+        self.base_url = f'https://www.dice.com/jobs?q={query_string}&location=Remote,%20OR%2097458,%20USA&latitude=43.00594549999999&longitude=-123.8925908&countryCode=US&locationPrecision=City&radius=30&radiusUnit=mi&page=1&pageSize=500&language=en&eid=4677&filters.postedDate=THREE&filters.easyApply=true'
         print('getting base_url')
         self.driver.get(self.base_url)
         print('done')
@@ -160,7 +160,8 @@ class DiceBot:
             self.extract_links()
             if not self.go_to_next_page():
                 break
-        self.process_links()
+        # self.process_links()
+        os.system("python compatibility.py")
         # os.system('python clean_and_rank.py')
         create_outliers_table()
         self.apply_links()
